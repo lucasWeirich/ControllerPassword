@@ -1,0 +1,5 @@
+--> servico
+      -- host
+      -- user
+      -- password
+      -- banco

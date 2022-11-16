@@ -1,0 +1,72 @@
+@use '../1-base/main.scss';
+@use '../1-base/reset.scss';
+
+/* 
+  ================================
+  FORM
+  ================================
+*/
+
+form {
+    @include main.FlexBetCen;
+    flex-wrap: wrap;
+
+    & .inputs {
+        width: 48%;
+
+        & input,
+        & textarea,
+        & select {
+            width: 100%;
+            height: 30px;
+            @include main.FlexCenCen;
+            margin-bottom: 10px;
+            border: none;
+            outline: none;
+            background-color: main.$ColorZero;
+            border-bottom: solid 1px main.$ColorSecond;
+
+            &:disabled {
+                opacity: 0.6;
+                cursor: no-drop;
+            }
+        }
+
+        & label {
+            font-size: reset.toRem(13);
+            letter-spacing: 1px;
+            padding-left: 2px;
+        }
+
+        &.--search {
+            width: 500px;
+            position: relative;
+
+            & input,
+            & textarea,
+            & select {
+                height: 40px;
+                border-radius: 5px;
+                padding-left: 20px;
+                padding-right: 35px;
+                margin-bottom: 0;
+            }
+
+            & input[type="submit"] {
+                width: 40px;
+                height: 40px;
+                border: none;
+                cursor: pointer;
+                background: url('../img/search.svg') no-repeat center;
+                position: absolute;
+                top: 0;
+                right: 0;
+                transition: all 0.5s;
+
+                &:hover {
+                    background-color: main.$ColorSecond;
+                }
+            }
+        }
+    }
+}

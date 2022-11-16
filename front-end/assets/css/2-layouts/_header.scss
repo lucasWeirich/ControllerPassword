@@ -1,0 +1,31 @@
+@use '../1-base/main.scss';
+@use '../1-base/reset.scss';
+
+/* 
+  ================================
+  HEADER
+  ================================
+*/
+
+header {
+    width: 100%;
+    height: 80px;
+    background-color: main.$ColorZero;
+    box-shadow: 0 0 5px main.$ColorOne;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+
+    & .container {
+        width: inherit;
+        height: inherit;
+        @include main.FlexBetCen;
+
+        & h1 {
+            font: {
+                size: reset.toRem(18);
+                font-weight: 600;
+            }
+        }
+    }
+}

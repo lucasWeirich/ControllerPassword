@@ -1,0 +1,97 @@
+@use '../1-base/main.scss';
+@use '../1-base/reset.scss';
+
+/* 
+  ================================
+  POPUP
+  ================================
+*/
+
+.__popup {
+    width: 100%;
+    height: 100vh;
+    background-color: #00000026;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: collapse;
+    z-index: -99999;
+    transition: all 0.5s;
+
+    &.--active {
+        opacity: 1;
+        visibility: visible;
+        z-index: 99999;
+    }
+
+    & .__content {
+        width: 80%;
+        max-width: 500px;
+        background: main.$ColorZero;
+        margin: auto;
+        margin-top: 100px;
+        border-radius: 10px;
+        overflow: hidden;
+
+        & .__header {
+            height: 50px;
+            @include main.FlexCenCen;
+            background-color: main.$ColorMain;
+
+            & h2 {
+                font-size: reset.toRem(16);
+                font-weight: 600;
+            }
+        }
+
+        & .__display {
+            padding: 30px;
+
+            & .__buttons {
+                @include main.FlexBetCen;
+            }
+        }
+    }
+
+    // POPUP --CREATE 
+    &.--create {
+        & .__content {
+            max-width: 650px;
+        }
+    }
+
+    // POPUP --EDIT 
+    &.--edit {
+        & .__content {
+            max-width: 650px;
+
+            & .__display {
+                & .__buttons {
+                    width: 100%;
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+
+
+    // POPUP --DELETE
+    &.--delete {
+        & .__display {
+            &:hover {
+                & p {
+                    color: #ff0000;
+                }
+            }
+        }
+
+        & p {
+            font-size: reset.toRem(13);
+            text-align: center;
+            margin-bottom: 30px;
+            transition: all 0.5s;
+            letter-spacing: 1px
+        }
+    }
+}

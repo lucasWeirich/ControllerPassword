@@ -1,0 +1,80 @@
+@use '../1-base/main.scss';
+@use '../1-base/reset.scss';
+
+/* 
+  ================================
+  BUTTONS
+  ================================
+*/
+
+.button {
+    display: flex;
+    width: auto;
+
+    & a,
+    & input,
+    & button {
+        width: auto;
+        height: 40px;
+        @include main.FlexCenCen;
+        padding: 0 20px;
+        font-size: reset.toRem(14);
+        font-weight: 500;
+        box-shadow: 0 0 8px main.$ColorSecond;
+        background-color: main.$ColorZero;
+        color: main.$ColorThree;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.5s;
+        border: none;
+
+        &:hover {
+            background-color: main.$ColorFour;
+            color: #fff;
+        }
+    }
+
+    &.--one {
+
+        & a,
+        & input,
+        & button {
+            border: none;
+            background-color: main.$ColorFour;
+            color: #fff;
+
+            &:hover {
+                background-color: #045fa4;
+                box-shadow: 0 0 10px main.$ColorFour;
+            }
+        }
+    }
+
+    &.--two {
+        & a,
+        & input,
+        & button {
+            background-color: main.$ColorTwo;
+            color: #fff;
+
+            &:hover {
+                background-color: #a40404;
+                box-shadow: 0 0 10px main.$ColorTwo;
+            }
+        }
+    }
+
+    &.--three {
+        & a,
+        & input,
+        & button {
+            background-color: #cd790b;
+            color: #fff;
+
+            &:hover {
+                background-color: #a45404;
+                box-shadow: 0 0 10px #cd790b;
+            }
+        }
+    }
+}

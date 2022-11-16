@@ -1,0 +1,84 @@
+@use '../1-base/main.scss';
+@use '../1-base/reset.scss';
+
+/* 
+  ================================
+  NAVIGATIONS
+  ================================
+*/
+
+.__navigations {
+    width: 20%;
+    background-color: main.$ColorZero;
+    height: 91.5vh;
+    box-shadow: 0 0 10px #1e1e1e;
+    z-index: 1;
+
+    & .__item {
+        display: flex;
+        flex-direction: column;
+        padding: 15px 20px;
+        border-bottom: solid 1px main.$ColorMain;
+
+        & .__title {
+            font-size: reset.toRem(16);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        & * {
+            font-size: reset.toRem(14);
+            font-weight: 400;
+        }
+
+        & a,
+        & summary {
+            transition: all 0.3s;
+            cursor: pointer;
+
+            &:hover {
+                color: main.$ColorFour;
+            }
+        }
+
+        & a {
+            width: 100%;
+            display: flex;
+            margin-left: calc(+15px);
+        }
+
+        & details {
+            & details {
+                margin-left: calc(+15px);
+            }
+
+            & summary {
+                list-style: none !important;
+
+                & .material-symbols-outlined {
+                    margin-right: 6px;
+
+                    //&.--f_close {}
+
+                    &.--f_open {
+                        display: none;
+                    }
+                }
+            }
+
+            &[open] {
+                &>summary {
+                    & .material-symbols-outlined {
+                        &.--f_close {
+                            display: none;
+                        }
+
+                        &.--f_open {
+                            display: initial;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

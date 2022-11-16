@@ -1,0 +1,64 @@
+@use '../1-base/main.scss';
+@use '../1-base/reset.scss';
+
+/* 
+  ================================
+  TABLES
+  ================================
+*/
+
+table {
+    width: 100%;
+
+    &.--main {
+        & thead {
+            & tr {
+                background: main.$ColorZero;
+                border-bottom: solid 1px main.$ColorMain;
+
+                & th {
+                    padding: 5px 20px;
+                    font-size: reset.toRem(14);
+                    font-weight: 600;
+                    text-align: start;
+
+                    &:first-child {
+                        width: 64px;
+                    }
+                }
+            }
+        }
+
+        & tbody {
+            & tr {
+                cursor: pointer;
+                transition: all 0.5s;
+
+                &:hover {
+                    background-color: main.$ColorZero;
+                }
+
+                &.--selected {
+                    background-color: #62451d;
+                    cursor: auto;
+                }
+
+                & td {
+                    padding: 5px 20px;
+                    font-size: reset.toRem(13);
+                    text-align: start;
+
+                    &:first-child {
+                        background: url('../img/favorite.svg') no-repeat center;
+                        width: 64px;
+                        cursor: pointer;
+
+                        &.--favorited {
+                            background: url('../img/favorited.svg') no-repeat center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

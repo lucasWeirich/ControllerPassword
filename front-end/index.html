@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/libraries/icons/icons.css">
+    <title>Controller Password</title>
+</head>
+
+<body class="home">
+
+    <header>
+        <div class="container">
+            <h1>Controller Password</h1>
+            <div class="button --one"><button class="openPopupCreate">Create</button></div>
+        </div><!-- container -->
+    </header>
+
+    <div class="subHeader">
+        <div class="container">
+            <form id="search">
+                <div class="inputs --search">
+                    <input type="text" name="search" placeholder="Search passwords">
+                    <input type="submit" value="">
+                </div>
+            </form>
+
+            <div class="__options">
+                <div class="button"><button>Copy</button></div>
+                <div class="button"><button class="openPopupEdit">Edit</button></div>
+                <div class="button"><button class="openPopupDelete">Delete</button></div>
+            </div>
+        </div><!-- container -->
+    </div><!-- subHeader -->
+
+    <main>
+        <div class="__page">
+            <section class="__navigations">
+                <div class="__item">
+                    <details open>
+                        <summary class="__title">Items</summary>
+
+                        <a onclick="allFavorites()">Favorites</a>
+                        <a href="#">Recents</a>
+                        <a href="#">Outros</a>
+                    </details>
+                </div><!-- __item -->
+                <div class="__item">
+                    <details>
+                        <summary class="__title">Folders</summary>
+
+                        <details>
+                            <summary>
+                                <span class="material-symbols-outlined --f_close">folder</span>
+                                <span class="material-symbols-outlined --f_open">folder_open</span>
+                                Admin
+                            </summary>
+                            <details>
+                                <summary>
+                                    <span class="material-symbols-outlined --f_close">folder</span>
+                                    <span class="material-symbols-outlined --f_open">folder_open</span>
+                                    Admin
+                                </summary>
+                            </details>
+                            <details>
+                                <summary>
+                                    <span class="material-symbols-outlined --f_close">folder</span>
+                                    <span class="material-symbols-outlined --f_open">folder_open</span>
+                                    Admin
+                                </summary>
+                                <details>
+                                    <summary>
+                                        <span class="material-symbols-outlined --f_close">folder</span>
+                                        <span class="material-symbols-outlined --f_open">folder_open</span>
+                                        Admin
+                                    </summary>
+                                </details>
+                            </details>
+                        </details>
+                        <details>
+                            <summary>
+                                <span class="material-symbols-outlined --f_close">folder</span>
+                                <span class="material-symbols-outlined --f_open">folder_open</span>
+                                Clientes
+                            </summary>
+                        </details>
+                        <details>
+                            <summary>
+                                <span class="material-symbols-outlined --f_close">folder</span>
+                                <span class="material-symbols-outlined --f_open">folder_open</span>
+                                Personal
+                            </summary>
+                        </details>
+                        <details>
+                            <summary>
+                                <span class="material-symbols-outlined --f_close">folder</span>
+                                <span class="material-symbols-outlined --f_open">folder_open</span>
+                                Root
+                            </summary>
+                        </details>
+                    </details>
+                </div><!-- __item -->
+
+                <div class="__item">
+                    <details>
+                        <summary class="__title">Filter by tags</summary>
+
+                        <a href="#">Internal</a>
+                    </details>
+                </div><!-- __item -->
+            </section><!-- __navigations -->
+
+            <div class="__content">
+                <div class="__header">
+                    <h3>All items</h3>
+                </div><!-- __header -->
+
+                <div class="__table">
+                    <table class="--main">
+                        <thead>
+                            <tr>
+                                <th><img src="assets/img/favorited.svg" alt=""></th>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Host</th>
+                                <th>Type</th>
+                                <th>Modified</th>
+                            </tr>
+                        </thead>
+                        <tbody id="content-table"></tbody>
+                    </table>
+                </div><!-- __table -->
+            </div><!-- __content -->
+        </div><!-- page -->
+    </main>
+
+    <!-- POPUP CREATE -->
+    <section id="popupCreate" class="__popup --create">
+        <div class="__content">
+            <div class="__header">
+                <h2>Criar</h2>
+            </div><!-- __header -->
+
+            <div class="__display">
+                <form id="create">
+                    <div class="inputs">
+                        <input type="text" name="name" placeholder="Name...">
+                    </div>
+                    <div class="inputs">
+                        <input type="text" name="username" placeholder="Username...">
+                    </div>
+                    <div class="inputs">
+                        <input type="password" name="password" placeholder="Password...">
+                    </div>
+                    <div class="inputs">
+                        <input type="text" name="host" placeholder="Host...">
+                    </div>
+                    <div class="inputs">
+                        <select name="type">
+                            <option value="" selected disabled>Type...</option>
+                            <option value="wp-admin">WP Admin</option>
+                            <option value="page">Page</option>
+                            <option value="database">Database</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="inputs button --one">
+                        <input type="submit" value="Criar">
+                    </div>
+                </form>
+            </div><!-- __display -->
+        </div><!-- __content -->
+    </section><!-- __popup --create -->
+
+    <!-- POPUP EDIT -->
+    <section id="popupEdit" class="__popup --edit">
+        <div class="__content">
+            <div class="__header">
+                <h2>Editar</h2>
+            </div><!-- __header -->
+
+            <div class="__display">
+                <form id="edit">
+                    <input type="hidden" name="id">
+
+                    <div class="inputs">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" placeholder="Name...">
+                    </div>
+                    <div class="inputs">
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" placeholder="Username...">
+                    </div>
+                    <div class="inputs">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" placeholder="Password...">
+                    </div>
+                    <div class="inputs">
+                        <label for="host">Host:</label>
+                        <input type="text" name="host" placeholder="Host...">
+                    </div>
+                    <div class="inputs">
+                        <label for="type">Type:</label>
+                        <input type="text" name="type" placeholder="Database...">
+                    </div>
+                    <div class="inputs">
+                        <label for="modified">Modified:</label>
+                        <input type="date" name="modified" placeholder="Data modified..." value="2022-11-09" disabled>
+                    </div>
+
+                    <div class="__buttons">
+                        <div class="button --three"><a class="--closePopup">Cancelar</button></div>
+                        <div class=" button --one"><input type="submit" value="Editar"></div>
+                    </div>
+                </form>
+            </div><!-- __display -->
+        </div><!-- __content -->
+    </section><!-- __popup --edit -->
+
+    <!-- POPUP DELETE -->
+    <section id="popupDelete" class="__popup --delete">
+        <div class="__content">
+            <div class="__header">
+                <h2>Deletar</h2>
+            </div><!-- __header -->
+
+            <div class="__display">
+                <p>Tem certeza que deseja deletar? Depois não é possível recuperar os dados deletados</p>
+
+                <div class="__buttons">
+                    <div class="button --three"><button class="--closePopup">Cancelar</button></div>
+                    <div class="button --two"><button onclick="deleteService()">Deletar</button></div>
+                </div>
+            </div><!-- __display -->
+        </div><!-- __content -->
+    </section><!-- __popup --delete -->
+</body>
+
+<script src="assets/libraries/jquery/jquery.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/script.js"></script>
+
+</html>

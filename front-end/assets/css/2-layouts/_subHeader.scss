@@ -1,0 +1,23 @@
+@use '../1-base/main.scss';
+@use '../1-base/reset.scss';
+
+/* 
+  ================================
+  SUB HEADER
+  ================================
+*/
+
+.subHeader {
+    border-bottom: solid 1px main.$ColorSecond;
+
+    & .container {
+        height: 60px;
+        @include main.FlexBetCen;
+        padding-top: 6px;
+
+        & .__options {
+            @include main.FlexCenCen;
+            gap: 10px;
+        }
+    }
+}

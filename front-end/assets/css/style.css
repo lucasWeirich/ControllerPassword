@@ -1,0 +1,560 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+/*RESET*/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-size: 16px;
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+code,
+em,
+img,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+b,
+u,
+i,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+main,
+canvas,
+embed,
+footer,
+header,
+nav,
+section,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-size-adjust: none;
+}
+
+footer,
+header,
+nav,
+section,
+main {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+abbr {
+  text-decoration: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+body {
+  background-size: 100%;
+  line-height: 1.3;
+  cursor: default;
+}
+
+a {
+  transition: 0.3s all;
+  text-decoration: none;
+  color: #3da6c8;
+}
+
+/*
+  ========================================
+  Typography
+  ========================================
+*/
+b,
+strong {
+  font-weight: 600;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+/*
+  ========================================
+  Img
+  ========================================
+*/
+img,
+picture,
+video,
+embed,
+object {
+  max-width: 100%;
+}
+
+img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/**/
+body {
+  background: #2a2a28;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+body * {
+  color: #fff;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  margin-bottom: 20px;
+  font-size: 0.875rem;
+}
+
+/*CONTAINER*/
+.container {
+  margin: 0 auto;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* DESKTOP LARGE - 1400px*/
+/* DESKTOP - 1200px*/
+/* LAPTOP - 1024px*/
+/* TABLET BIG - 900px*/
+/* TABLET - 600px*/
+/* MOBILE - 400px*/
+/* 
+  ================================
+  HEADER
+  ================================
+*/
+header {
+  width: 100%;
+  height: 80px;
+  background-color: #3a3a38;
+  box-shadow: 0 0 5px #0f0f0f;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+header .container {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .container h1 {
+  font-size: 1.125rem;
+  font-font-weight: 600;
+}
+
+/* 
+  ================================
+  SUB HEADER
+  ================================
+*/
+.subHeader {
+  border-bottom: solid 1px #1e1e1e;
+}
+.subHeader .container {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 6px;
+}
+.subHeader .container .__options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 
+  ================================
+  HOME
+  ================================
+*/
+.home main .__page {
+  width: 100%;
+  /* max-width: 1600px; */
+  display: flex;
+  margin: auto;
+}
+.home main .__page .__content {
+  width: 80%;
+  background-color: #1e1e1e;
+}
+.home main .__page .__content .__header {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  background-color: #2a2a28;
+  border: solid 2px #2a2a28;
+}
+.home main .__page .__content .__header > * {
+  font-size: 0.875rem;
+  padding-left: 20px;
+}
+
+/* 
+  ================================
+  BUTTONS
+  ================================
+*/
+.button {
+  display: flex;
+  width: auto;
+}
+.button a, .button input, .button button {
+  width: auto;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: 0 0 8px #1e1e1e;
+  background-color: #3a3a38;
+  color: #bfbfbf;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s;
+  border: none;
+}
+.button a:hover, .button input:hover, .button button:hover {
+  background-color: #2489d8;
+  color: #fff;
+}
+.button.--one a, .button.--one input, .button.--one button {
+  border: none;
+  background-color: #2489d8;
+  color: #fff;
+}
+.button.--one a:hover, .button.--one input:hover, .button.--one button:hover {
+  background-color: #045fa4;
+  box-shadow: 0 0 10px #2489d8;
+}
+.button.--two a, .button.--two input, .button.--two button {
+  background-color: #d40101;
+  color: #fff;
+}
+.button.--two a:hover, .button.--two input:hover, .button.--two button:hover {
+  background-color: #a40404;
+  box-shadow: 0 0 10px #d40101;
+}
+.button.--three a, .button.--three input, .button.--three button {
+  background-color: #cd790b;
+  color: #fff;
+}
+.button.--three a:hover, .button.--three input:hover, .button.--three button:hover {
+  background-color: #a45404;
+  box-shadow: 0 0 10px #cd790b;
+}
+
+/* 
+  ================================
+  NAVIGATIONS
+  ================================
+*/
+.__navigations {
+  width: 20%;
+  background-color: #3a3a38;
+  height: 91.5vh;
+  box-shadow: 0 0 10px #1e1e1e;
+  z-index: 1;
+}
+.__navigations .__item {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 20px;
+  border-bottom: solid 1px #2a2a28;
+}
+.__navigations .__item .__title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.__navigations .__item * {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+.__navigations .__item a, .__navigations .__item summary {
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.__navigations .__item a:hover, .__navigations .__item summary:hover {
+  color: #2489d8;
+}
+.__navigations .__item a {
+  width: 100%;
+  display: flex;
+  margin-left: 15px;
+}
+.__navigations .__item details details {
+  margin-left: 15px;
+}
+.__navigations .__item details summary {
+  list-style: none !important;
+}
+.__navigations .__item details summary .material-symbols-outlined {
+  margin-right: 6px;
+}
+.__navigations .__item details summary .material-symbols-outlined.--f_open {
+  display: none;
+}
+.__navigations .__item details[open] > summary .material-symbols-outlined.--f_close {
+  display: none;
+}
+.__navigations .__item details[open] > summary .material-symbols-outlined.--f_open {
+  display: initial;
+}
+
+/* 
+  ================================
+  TABLES
+  ================================
+*/
+table {
+  width: 100%;
+}
+table.--main thead tr {
+  background: #3a3a38;
+  border-bottom: solid 1px #2a2a28;
+}
+table.--main thead tr th {
+  padding: 5px 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: start;
+}
+table.--main thead tr th:first-child {
+  width: 64px;
+}
+table.--main tbody tr {
+  cursor: pointer;
+  transition: all 0.5s;
+}
+table.--main tbody tr:hover {
+  background-color: #3a3a38;
+}
+table.--main tbody tr.--selected {
+  background-color: #62451d;
+  cursor: auto;
+}
+table.--main tbody tr td {
+  padding: 5px 20px;
+  font-size: 0.8125rem;
+  text-align: start;
+}
+table.--main tbody tr td:first-child {
+  background: url("../img/favorite.svg") no-repeat center;
+  width: 64px;
+  cursor: pointer;
+}
+table.--main tbody tr td:first-child.--favorited {
+  background: url("../img/favorited.svg") no-repeat center;
+}
+
+/* 
+  ================================
+  FORM
+  ================================
+*/
+form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+form .inputs {
+  width: 48%;
+}
+form .inputs input, form .inputs textarea, form .inputs select {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  border: none;
+  outline: none;
+  background-color: #3a3a38;
+  border-bottom: solid 1px #1e1e1e;
+}
+form .inputs input:disabled, form .inputs textarea:disabled, form .inputs select:disabled {
+  opacity: 0.6;
+  cursor: no-drop;
+}
+form .inputs label {
+  font-size: 0.8125rem;
+  letter-spacing: 1px;
+  padding-left: 2px;
+}
+form .inputs.--search {
+  width: 500px;
+  position: relative;
+}
+form .inputs.--search input, form .inputs.--search textarea, form .inputs.--search select {
+  height: 40px;
+  border-radius: 5px;
+  padding-left: 20px;
+  padding-right: 35px;
+  margin-bottom: 0;
+}
+form .inputs.--search input[type=submit] {
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  background: url("../img/search.svg") no-repeat center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: all 0.5s;
+}
+form .inputs.--search input[type=submit]:hover {
+  background-color: #1e1e1e;
+}
+
+/* 
+  ================================
+  POPUP
+  ================================
+*/
+.__popup {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1490196078);
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: collapse;
+  z-index: -99999;
+  transition: all 0.5s;
+}
+.__popup.--active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 99999;
+}
+.__popup .__content {
+  width: 80%;
+  max-width: 500px;
+  background: #3a3a38;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.__popup .__content .__header {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2a2a28;
+}
+.__popup .__content .__header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.__popup .__content .__display {
+  padding: 30px;
+}
+.__popup .__content .__display .__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.__popup.--create .__content {
+  max-width: 650px;
+}
+.__popup.--edit .__content {
+  max-width: 650px;
+}
+.__popup.--edit .__content .__display .__buttons {
+  width: 100%;
+  margin-top: 20px;
+}
+.__popup.--delete .__display:hover p {
+  color: #ff0000;
+}
+.__popup.--delete p {
+  font-size: 0.8125rem;
+  text-align: center;
+  margin-bottom: 30px;
+  transition: all 0.5s;
+  letter-spacing: 1px;
+}
+
+/*# sourceMappingURL=style.css.map */

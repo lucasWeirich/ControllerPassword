@@ -1,0 +1,23 @@
+// Arquivo  que define as regras básicas de estilo, elementos gerais.
+
+@use 'reset';
+@use 'main';
+
+
+/* DESKTOP LARGE - 1400px*/ 
+@include main.breakpoint(smashDesktopLarge) { }
+
+/* DESKTOP - 1200px*/ 
+@include main.breakpoint(smashDesktop) { }
+
+/* LAPTOP - 1024px*/ 
+@include main.breakpoint(smashLaptop) { }
+
+/* TABLET BIG - 900px*/ 
+@include main.breakpoint(smashTabletBig) { }
+
+/* TABLET - 600px*/ 
+@include main.breakpoint(smashTablet) { }
+
+/* MOBILE - 400px*/ 
+@include main.breakpoint(smashMobile) { }
