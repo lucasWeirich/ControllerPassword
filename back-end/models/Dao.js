@@ -11,25 +11,34 @@ module.exports = class Dao {
     }
 
     //----------------------------------------
-    // Get all services
-    getAll() {
+    // Verificar Retorno
+    selectAll() {
+
         return new Promise(async (resolve, reject) => {
+
             try {
-                const [rows] = await this.#db.execute(this.#queries.getAll);
+
+                const [rows] = await this.#db.execute(this.#queries.selectAll);
                 resolve(rows);
+
             } catch (err) {
                 reject(err);
             }
         });
+
     }
 
     //----------------------------------------
-    // Get services
-    getOne(id) {
+    // Verificar Retorno
+    selectOne(id) {
+
         return new Promise(async (resolve, reject) => {
+
             try {
-                const [rows] = await this.#db.execute(this.#queries.getOne, [id]);
+
+                const [rows] = await this.#db.execute(this.#queries.selectOne, [id]);
                 resolve(rows[0]);
+
             } catch (err) {
                 reject(err);
             }
@@ -37,12 +46,16 @@ module.exports = class Dao {
     }
 
     //----------------------------------------
-    // Get services favorites
-    getFavorites() {
+    // Verificar Retorno
+    selectSearch(name) {
+
         return new Promise(async (resolve, reject) => {
+
             try {
-                const [rows] = await this.#db.execute(this.#queries.getFavorites);
+
+                const [rows] = await this.#db.execute(this.#queries.selectSearch, [name]);
                 resolve(rows);
+
             } catch (err) {
                 reject(err);
             }
@@ -50,38 +63,35 @@ module.exports = class Dao {
     }
 
     //----------------------------------------
-    // Search service
-    getSearch(name) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const [rows] = await this.#db.execute(this.#queries.getSearch, [name]);
-                resolve(rows);
-            } catch (err) {
-                reject(err);
-            }
-        });
-    }
-
-    //----------------------------------------
-    // Create service
+    // Verificar Effected Rows
     insert(values) {
+
         return new Promise(async (resolve, reject) => {
+
             try {
+
                 const result = await this.#db.execute(this.#queries.insert, values);
                 resolve(result);
+
             } catch (err) {
+
                 const strErr = String(err);
+
                 if (strErr.includes('Duplicate entry')) {
                     return reject('Entidade já cadastrada: ' + strErr);
                 }
+
                 reject(err);
             }
         });
     }
 
     //----------------------------------------
-    // Update service
+    // Verificar Effected Rows
     update(id, values) {
+
+        console.log(values + id) // Resolver aqui
+
         return new Promise(async (resolve, reject) => {
             try {
                 const result = await this.#db.execute(this.#queries.update, [...values, id]);
@@ -93,20 +103,7 @@ module.exports = class Dao {
     }
 
     //----------------------------------------
-    // Update favorite of service
-    updateFavorite(id, values) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const result = await this.#db.execute(this.#queries.updateFavorite, [...values, id]);
-                resolve(result)
-            } catch (err) {
-                reject(err);
-            }
-        });
-    }
-
-    //----------------------------------------
-    // Delete service
+    // Verificar Effected Rows
     delete(id) {
         return new Promise(async (resolve, reject) => {
             try {

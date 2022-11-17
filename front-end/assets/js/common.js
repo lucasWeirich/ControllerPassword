@@ -1,9 +1,9 @@
 // -----------------------------------------------------------------
 // Variables Globais API
-const _URL_BASE = 'http://localhost:2222/';
+const _URL_BASE = 'http://localhost:3000/';
 const _HEADERS = {
-    "Accept": "application/json; charset=utf-8",
-    "Content-Type": "application/json; charset=utf-8",
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
 };
 
 // -----------------------------------------------------------------

@@ -20,7 +20,7 @@ const _edit = {
     host: document.querySelector('form#edit [name="host"]'),
     type: document.querySelector('form#edit [name="type"]'),
     modified: document.querySelector('form#edit [name="modified"]'),
-    favorite: 1,
+    /* favorite: 1, */
 };
 const _search = {
     form: document.querySelector('form#search'),
@@ -29,10 +29,11 @@ const _search = {
 
 // -----------------------------------------------------------------
 // Function for to do all request for db.json
-async function allRequest(route, method, body) {
+async function allRequest(route, _method, body) {
     const request = await fetch(`${_URL_BASE}${route}`, {
-        method,
+        method: _method,
         header: _HEADERS,
+        mode: 'cors',
         body,
     });
     return await request.json();
@@ -45,14 +46,14 @@ function createTable(res) {
 
     res.forEach(item => {
         _bodyTable.innerHTML += `
-            <tr id="service_${item.id}">
-                <td id="fav_${item.id}" class="td_favorite ${item.favorite === 1 ? '--favorited' : ''}"></td>
-                <td>${item.name}</td>
-                <td>${item.username}</td>
-                <td>${item.password}</td>
-                <td>${item.host}</td>
-                <td>${item.type}</td>
-                <td>${item.modified.substring(0, 10)}</td>
+            <tr id="service_${item.s_id}">
+                <td id="fav_${item.s_id}" class="td_favorite ${item.s_favorite === 1 ? '--favorited' : ''}"></td>
+                <td>${item.s_name}</td>
+                <td>${item.s_username}</td>
+                <td>${item.s_password}</td>
+                <td>${item.s_host}</td>
+                <td>${item.s_type}</td>
+                <td>${item.s_modified.substring(0, 10)}</td>
             </tr>
         `;
     });
@@ -91,7 +92,7 @@ function updateFavorite() {
             let idFavorite = id.replace('fav_', '');
 
             let body = {
-                favorite: fav.className.includes('--favorited') ? 0 : 1
+                s_favorite: fav.className.includes('--favorited') ? 0 : 1
             }
 
             const res = await allRequest(`services_favorites/${idFavorite}`, 'put', JSON.stringify(body));
@@ -113,12 +114,12 @@ function createObjectData(e) {
     let year = date.getFullYear();
 
     return ({
-        name: e.name.value,
-        username: e.username.value,
-        password: e.password.value,
-        host: e.host.value,
-        type: e.type.value,
-        modified: `${year}-${month}-${day}`
+        s_name: e.name.value,
+        s_username: e.username.value,
+        s_password: e.password.value,
+        s_host: e.host.value,
+        s_type: e.type.value,
+        s_modified: `${year}-${month}-${day}`,
     })
 }
 
@@ -144,7 +145,7 @@ _create.form.addEventListener('submit', async function (e) {
     console.log(newService)
 
     if (validadeInputs(newService)) {
-        const res = await allRequest('services', 'patch', JSON.stringify(newService));
+        const res = await allRequest('services', 'POST', JSON.stringify(newService));
         console.log(res);
     } else {
         alert("CAMPO VAZIO!!!")
@@ -176,13 +177,13 @@ async function allFavorites() {
 // -----------------------------------------------------------------
 // Function fill data for update service
 function fillInputsEdit(e) {
-    _edit.id.value = e.id;
-    _edit.name.value = e.name;
-    _edit.username.value = e.username;
-    _edit.password.value = e.password;
-    _edit.host.value = e.host;
-    _edit.type.value = e.type;
-    _edit.modified.value = e.modified.substring(0, 10);
+    _edit.id.value = e.s_id;
+    _edit.name.value = e.s_name;
+    _edit.username.value = e.s_username;
+    _edit.password.value = e.s_password;
+    _edit.host.value = e.s_host;
+    _edit.type.value = e.s_type;
+    _edit.modified.value = e.s_modified.substring(0, 10);
 }
 
 // -----------------------------------------------------------------
