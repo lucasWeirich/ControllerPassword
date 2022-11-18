@@ -8,8 +8,7 @@ const _create = {
     username: document.querySelector('form#create [name="username"]'),
     password: document.querySelector('form#create [name="password"]'),
     host: document.querySelector('form#create [name="host"]'),
-    type: document.querySelector('form#create [name="type"]'),
-    favorite: 1,
+    type: document.querySelector('form#create [name="type"]')
 };
 const _edit = {
     form: document.querySelector('form#edit'),
@@ -19,8 +18,7 @@ const _edit = {
     password: document.querySelector('form#edit [name="password"]'),
     host: document.querySelector('form#edit [name="host"]'),
     type: document.querySelector('form#edit [name="type"]'),
-    modified: document.querySelector('form#edit [name="modified"]'),
-    /* favorite: 1, */
+    modified: document.querySelector('form#edit [name="modified"]')
 };
 const _search = {
     form: document.querySelector('form#search'),
@@ -50,7 +48,7 @@ function createTable(res) {
                 <td id="fav_${item.s_id}" class="td_favorite ${item.s_favorite === 1 ? '--favorited' : ''}"></td>
                 <td>${item.s_name}</td>
                 <td>${item.s_username}</td>
-                <td>${item.s_password}</td>
+                <td class="--copy" onclick="copyPassword('${item.s_password}')">${item.s_password}</td>
                 <td>${item.s_host}</td>
                 <td>${item.s_type}</td>
                 <td>${item.s_modified.substring(0, 10)}</td>
@@ -96,7 +94,7 @@ function updateFavorite() {
             }
 
             const res = await allRequest(`services_favorites/${idFavorite}`, 'put', JSON.stringify(body));
-            console.log(res)
+            this.classList.toggle('--favorited');
         })
     })
 }
@@ -110,7 +108,7 @@ function updateFavorite() {
 function createObjectData(e) {
     let date = new Date();
     let day = date.getDate();
-    let month = date.getMonth();
+    let month = Number(date.getMonth() + 1);
     let year = date.getFullYear();
 
     return ({
@@ -119,7 +117,7 @@ function createObjectData(e) {
         s_password: e.password.value,
         s_host: e.host.value,
         s_type: e.type.value,
-        s_modified: `${year}-${month}-${day}`,
+        s_modified: `${year}-${month}-${day}`
     })
 }
 
@@ -142,13 +140,13 @@ _create.form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     let newService = createObjectData(_create);
-    console.log(newService)
 
     if (validadeInputs(newService)) {
         const res = await allRequest('services', 'POST', JSON.stringify(newService));
-        console.log(res);
+        alertMessage(res.message, '--ok');
     } else {
-        alert("CAMPO VAZIO!!!")
+        alertMessage('Complete todos os campos!', '--info');
+        return;
     }
     updateAll();
 });
@@ -163,7 +161,7 @@ _search.form.addEventListener('submit', async function (e) {
         const res = await allRequest(`services_search/${data}`, 'get');
         createTable(res);
     }
-    updateAll();
+    selectService();
 })
 
 // -----------------------------------------------------------------
@@ -171,7 +169,8 @@ _search.form.addEventListener('submit', async function (e) {
 async function allFavorites() {
     const res = await allRequest(`services_favorites`, 'get');
     createTable(res);
-    updateAll();
+    selectService();
+    titleRequest('All Favorites');
 }
 
 // -----------------------------------------------------------------
@@ -194,7 +193,7 @@ _edit.form.addEventListener('submit', async function (e) {
     if (validadeInputs(_edit)) {
         let serviceUpdate = JSON.stringify(createObjectData(_edit));
         const res = await allRequest(`services/${_edit.id.value}`, 'put', serviceUpdate);
-        console.log(res)
+        alertMessage(res.message, '--ok');
     }
     updateAll();
 })
@@ -205,14 +204,28 @@ async function deleteService() {
     let id = document.querySelector('#content-table .--selected').id;
     let idDelete = id.replace('service_', '');
     const res = await allRequest(`services/${idDelete}`, 'delete');
-    console.log(res);
+    alertMessage(res, '--ok');
     updateAll();
+}
+
+// -----------------------------------------------------------------
+// Function filter services with type
+async function filterType(type) {
+    const res = await allRequest(`services_type/${type}`, 'get');
+    createTable(res);
+    selectService();
+    titleRequest(`Filter by Type: <span style="text-transform: uppercase; margin-left: 10px">${type}</span>`);
 }
 
 // -----------------------------------------------------------------
 // Function update all
 async function updateAll() {
-    selectService();
+    let popupActive = document.querySelector('.__popup.--active');
+    let inputs = document.querySelectorAll('input:not([type=submit])');
+
+    if (popupActive) popupActive.classList.remove('--active');
+    inputs.forEach(i => i.value = '')
+    initialized();
 }
 
 // -----------------------------------------------------------------
@@ -221,6 +234,7 @@ async function initialized() {
     const res = await allRequest('services', 'get');
     createTable(res);
     selectService();
+    titleRequest('All Items');
 }
 
 // -----------------------------------------------------------------

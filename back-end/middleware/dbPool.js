@@ -22,4 +22,3 @@ module.exports = async function dbPool(req, res, next) {
         console.log('DBpool <---- Encerrou a conexão');
     });
 }
-

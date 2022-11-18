@@ -1,21 +1,41 @@
 // -----------------------------------------------------------------
 // Variables Globais API
-const _URL_BASE = 'http://localhost:3000/';
+const _URL_BASE = 'http://localhost:2222/';
 const _HEADERS = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
 };
 
+function titleRequest(e) {
+    let title = document.getElementById('title-option');
+    title.innerHTML = e;
+}
+
 // -----------------------------------------------------------------
 // Function copy password
 function copyPassword(e) {
-    navigator.clipboard.writeText(e.innerHTML)
+    navigator.clipboard.writeText(e)
         .then(() => {
-            console.log("Password copied...")
+            alertMessage('Password copied!', '--ok');
         })
         .catch(err => {
-            console.log('Something went wrong', err);
+            alertMessage(`Something went wrong: ${err}`, '--error');
         })
+}
+
+// -----------------------------------------------------------------
+// Function copy password
+function alertMessage(txt, status) {
+    let msgAlert = document.getElementById('alertMessage');
+
+    msgAlert.innerText = txt;
+    msgAlert.classList.add(status);
+    msgAlert.classList.add('--active');
+    
+    setTimeout(() => {
+        msgAlert.classList.remove(status);
+        msgAlert.classList.remove('--active');
+    }, 4000);
 }
 
 // -----------------------------------------------------------------
@@ -42,6 +62,7 @@ let openPopupEdit = document.querySelectorAll('.openPopupEdit');
 
 openPopupEdit.forEach(btn => {
     btn.addEventListener("click", async function () {
+        if (!(document.querySelector('#content-table .--selected'))) return alertMessage('Select first service!', '--info');
         const res = await getDataUpdate();
         fillInputsEdit(res);
         popupEdit.classList.add('--active');
@@ -61,6 +82,7 @@ let openPopupDelete = document.querySelectorAll('.openPopupDelete');
 
 openPopupDelete.forEach(btn => {
     btn.addEventListener("click", function () {
+        if (!(document.querySelector('#content-table .--selected'))) return alertMessage('Select first service!', '--info');
         popupDelete.classList.add('--active');
     });
 });

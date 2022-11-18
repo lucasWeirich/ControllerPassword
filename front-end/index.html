@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/libraries/icons/icons.css">
-    <title>Controller Password</title>
+    <title>Controller of Password</title>
 </head>
 
 <body class="home">
@@ -30,7 +30,7 @@
             </form>
 
             <div class="__options">
-                <div class="button"><button>Copy</button></div>
+                <!-- <div class="button"><button>Copy</button></div> -->
                 <div class="button"><button class="openPopupEdit">Edit</button></div>
                 <div class="button"><button class="openPopupDelete">Delete</button></div>
             </div>
@@ -43,80 +43,61 @@
                 <div class="__item">
                     <details open>
                         <summary class="__title">Items</summary>
-
+                        <a onclick="initialized()">All Items</a>
                         <a onclick="allFavorites()">Favorites</a>
-                        <a href="#">Recents</a>
-                        <a href="#">Outros</a>
                     </details>
                 </div><!-- __item -->
-                <div class="__item">
+               <!--  <div class="__item">
                     <details>
                         <summary class="__title">Folders</summary>
 
                         <details>
                             <summary>
-                                <span class="material-symbols-outlined --f_close">folder</span>
-                                <span class="material-symbols-outlined --f_open">folder_open</span>
+                                <span translate="no" class="material-symbols-outlined --f_close">folder</span>
+                                <span translate="no" class="material-symbols-outlined --f_open">folder_open</span>
                                 Admin
                             </summary>
                             <details>
                                 <summary>
-                                    <span class="material-symbols-outlined --f_close">folder</span>
-                                    <span class="material-symbols-outlined --f_open">folder_open</span>
+                                    <span translate="no" class="material-symbols-outlined --f_close">folder</span>
+                                    <span translate="no" class="material-symbols-outlined --f_open">folder_open</span>
                                     Admin
                                 </summary>
                             </details>
                             <details>
                                 <summary>
-                                    <span class="material-symbols-outlined --f_close">folder</span>
-                                    <span class="material-symbols-outlined --f_open">folder_open</span>
+                                    <span translate="no" class="material-symbols-outlined --f_close">folder</span>
+                                    <span translate="no" class="material-symbols-outlined --f_open">folder_open</span>
                                     Admin
                                 </summary>
                                 <details>
                                     <summary>
-                                        <span class="material-symbols-outlined --f_close">folder</span>
-                                        <span class="material-symbols-outlined --f_open">folder_open</span>
+                                        <span translate="no" class="material-symbols-outlined --f_close">folder</span>
+                                        <span translate="no" class="material-symbols-outlined --f_open">folder_open</span>
                                         Admin
                                     </summary>
                                 </details>
                             </details>
                         </details>
-                        <details>
-                            <summary>
-                                <span class="material-symbols-outlined --f_close">folder</span>
-                                <span class="material-symbols-outlined --f_open">folder_open</span>
-                                Clientes
-                            </summary>
-                        </details>
-                        <details>
-                            <summary>
-                                <span class="material-symbols-outlined --f_close">folder</span>
-                                <span class="material-symbols-outlined --f_open">folder_open</span>
-                                Personal
-                            </summary>
-                        </details>
-                        <details>
-                            <summary>
-                                <span class="material-symbols-outlined --f_close">folder</span>
-                                <span class="material-symbols-outlined --f_open">folder_open</span>
-                                Root
-                            </summary>
-                        </details>
                     </details>
-                </div><!-- __item -->
+                </div> --><!-- __item -->
 
                 <div class="__item">
                     <details>
-                        <summary class="__title">Filter by tags</summary>
+                        <summary class="__title">Filter by Type</summary>
 
-                        <a href="#">Internal</a>
+                        <a onclick="filterType('wp-admin')">Wp Admin</a>
+                        <a onclick="filterType('page')">Page</a>
+                        <a onclick="filterType('controle')">Controle</a>
+                        <a onclick="filterType('database')">Database</a>
+                        <a onclick="filterType('outro')">Outro</a>
                     </details>
                 </div><!-- __item -->
             </section><!-- __navigations -->
 
             <div class="__content">
                 <div class="__header">
-                    <h3>All items</h3>
+                <h3 id="title-option">All items</h3>
                 </div><!-- __header -->
 
                 <div class="__table">
@@ -149,23 +130,24 @@
             <div class="__display">
                 <form id="create">
                     <div class="inputs">
-                        <input type="text" name="name" placeholder="Name..." value="aaa">
+                        <input type="text" name="name" placeholder="Name...">
                     </div>
                     <div class="inputs">
-                        <input type="text" name="username" placeholder="Username..." value="aaa">
+                        <input type="text" name="username" placeholder="Username...">
                     </div>
                     <div class="inputs">
-                        <input type="password" name="password" placeholder="Password..." value="aaa">
+                        <input type="password" name="password" placeholder="Password...">
                     </div>
                     <div class="inputs">
-                        <input type="text" name="host" placeholder="Host..." value="aaa">
+                        <input type="text" name="host" placeholder="Host...">
                     </div>
                     <div class="inputs">
                         <select name="type">
-                            <option value="" disabled>Type...</option>
-                            <option value="wp-admin" selected>WP Admin</option>
+                            <option value="" selected disabled>Type...</option>
+                            <option value="wp-admin">WP Admin</option>
                             <option value="page">Page</option>
                             <option value="database">Database</option>
+                            <option value="controle">Controle</option>
                             <option value="outro">Outro</option>
                         </select>
                     </div>
@@ -205,8 +187,14 @@
                         <input type="text" name="host" placeholder="Host...">
                     </div>
                     <div class="inputs">
-                        <label for="type">Type:</label>
-                        <input type="text" name="type" placeholder="Database...">
+                        <select name="type">
+                            <option value="" selected disabled>Type...</option>
+                            <option value="wp-admin">WP Admin</option>
+                            <option value="page">Page</option>
+                            <option value="database">Database</option>
+                            <option value="controle">Controle</option>
+                            <option value="outro">Outro</option>
+                        </select>
                     </div>
                     <div class="inputs">
                         <label for="modified">Modified:</label>
@@ -239,6 +227,10 @@
             </div><!-- __display -->
         </div><!-- __content -->
     </section><!-- __popup --delete -->
+
+    <section id="alertMessage" class="__alert">
+        teste e asd as dkajs djaks dsa asd as d asd as das da sd asd as da !
+    </section><!-- __alert -->
 </body>
 
 <script src="assets/libraries/jquery/jquery.js"></script>

@@ -1,11 +1,14 @@
 const Dao = require('./Dao');
 
 const queries = {
-    selectAll: 'SELECT * FROM controller_password.services order by s_id desc;',
-    selectOne: 'SELECT * FROM controller_password.services WHERE s_id=?;',
-    selectSearch: 'SELECT * FROM controller_password.services WHERE s_name LIKE ?;',
-    insert: 'INSERT INTO controller_password.services (s_name,s_username,s_password,s_host,s_type,s_mofified,s_favorite) VALUES(?,?,?,?,?,?,?);',
-    update: 'UPDATE controller_password.services SET s_name=?,s_username=?,s_password=?,s_host=?,s_type=?,s_modified=?, WHERE s_id=?;',
+    getAll: 'SELECT * FROM controller_password.services order by s_id desc;',
+    getOne: 'SELECT * FROM controller_password.services WHERE s_id=?;',
+    getFavorites: 'SELECT * FROM controller_password.services WHERE s_favorite=1;',
+    getSearch: 'SELECT * FROM controller_password.services WHERE s_name LIKE ?;',
+    getType: 'SELECT * FROM controller_password.services WHERE s_type LIKE ?;',
+    insert: 'INSERT INTO controller_password.services (s_name,s_username,s_password,s_host,s_type,s_modified) VALUES(?,?,?,?,?,?);',
+    update: 'UPDATE controller_password.services SET s_name=?,s_username=?,s_password=?,s_host=?,s_type=?,s_modified=? WHERE s_id=?;',
+    updateFavorite: 'UPDATE controller_password.services SET s_favorite=? WHERE s_id=?;',
     delete: 'DELETE FROM controller_password.services WHERE s_id=?;'
 }
 
@@ -23,7 +26,6 @@ module.exports = class Services extends Dao {
     //----------------------------------------------------------------------------
     //
     constructor(database, services) {
-
         super(database, queries);
 
         if (services) {
@@ -49,7 +51,7 @@ module.exports = class Services extends Dao {
             host: this.#s_host,
             type: this.#s_type,
             modified: this.#s_modified,
-            favorite: this.#s_favorite
+            favorite: this.#s_favorite,
         }
     }
 
@@ -68,7 +70,7 @@ module.exports = class Services extends Dao {
             this.#s_password,
             this.#s_host,
             this.#s_type,
-            this.#s_modified,
+            this.#s_modified
         ])
     }
 
@@ -82,6 +84,14 @@ module.exports = class Services extends Dao {
             this.#s_host,
             this.#s_type,
             this.#s_modified
+        ])
+    }
+
+    //----------------------------------------------------------------------------
+    //
+    updateFavorite(id) {
+        return super.updateFavorite(id, [
+            this.#s_favorite,
         ])
     }
 }

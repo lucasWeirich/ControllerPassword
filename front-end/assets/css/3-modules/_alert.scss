@@ -1,0 +1,72 @@
+@use '../1-base/main.scss';
+@use '../1-base/reset.scss';
+
+/* 
+  ================================
+  ALERT
+  ================================
+*/
+
+.__alert {
+    width: 100%;
+    min-width: 250px;
+    max-width: 300px;
+    padding: 15px;
+    border-radius: 10px 0 0 10px;
+    position: fixed;
+    top: 15px;
+    right: 0px;
+    opacity: 0;
+    z-index: -99999;
+    transition: all 0.3s;
+
+    // txt message
+    font-size: reset.toRem(14);
+    letter-spacing: 0.5px;
+    color: #fff;
+    font-weight: 300;
+
+    &.--active {
+        opacity: 1;
+        z-index: 99999;
+        animation: effect-active 0.3s;
+        animation-iteration-count: 2;
+
+        &.--ok {
+            background-color: #24932a;
+            box-shadow: 0 0 15px #24932a;
+        }
+
+        &.--error {
+            background-color: #7c1a0a;
+            box-shadow: 0 0 15px #7c1a0a;
+        }
+
+        &.--info {
+            background-color: #93672e;
+            box-shadow: 0 0 15px #93672e;
+        }
+    }
+}
+
+@keyframes effect-active {
+    0% {
+        right: 0;
+    }
+
+    25% {
+        right: -5px;
+    }
+
+    50% {
+        right: 0;
+    }
+
+    75% {
+        right: -5px;
+    }
+
+    100% {
+        right: 0;
+    }
+}

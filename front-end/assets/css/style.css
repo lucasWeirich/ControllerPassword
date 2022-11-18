@@ -424,6 +424,28 @@ table.--main tbody tr td:first-child {
 table.--main tbody tr td:first-child.--favorited {
   background: url("../img/favorited.svg") no-repeat center;
 }
+table.--main tbody tr td.--copy {
+  position: relative;
+  padding-right: 25px;
+}
+table.--main tbody tr td.--copy::after {
+  content: "";
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../img/copy.svg") no-repeat center;
+  position: absolute;
+  right: 0;
+  top: 1px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.5s;
+}
+table.--main tbody tr td.--copy:hover::after {
+  opacity: 1;
+}
 
 /* 
   ================================
@@ -555,6 +577,65 @@ form .inputs.--search input[type=submit]:hover {
   margin-bottom: 30px;
   transition: all 0.5s;
   letter-spacing: 1px;
+}
+
+/* 
+  ================================
+  ALERT
+  ================================
+*/
+.__alert {
+  width: 100%;
+  min-width: 250px;
+  max-width: 300px;
+  padding: 15px;
+  border-radius: 10px 0 0 10px;
+  position: fixed;
+  top: 15px;
+  right: 0px;
+  opacity: 0;
+  z-index: -99999;
+  transition: all 0.3s;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+  color: #fff;
+  font-weight: 300;
+}
+.__alert.--active {
+  opacity: 1;
+  z-index: 99999;
+  animation: effect-active 0.3s;
+  animation-iteration-count: 2;
+}
+.__alert.--active.--ok {
+  background-color: #24932a;
+  box-shadow: 0 0 15px #24932a;
+}
+.__alert.--active.--error {
+  background-color: #7c1a0a;
+  box-shadow: 0 0 15px #7c1a0a;
+}
+.__alert.--active.--info {
+  background-color: #93672e;
+  box-shadow: 0 0 15px #93672e;
+}
+
+@keyframes effect-active {
+  0% {
+    right: 0;
+  }
+  25% {
+    right: -5px;
+  }
+  50% {
+    right: 0;
+  }
+  75% {
+    right: -5px;
+  }
+  100% {
+    right: 0;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

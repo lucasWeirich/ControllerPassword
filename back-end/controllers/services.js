@@ -5,26 +5,52 @@ module.exports = function (app) {
     //----------------------------------------------------------------------------------
     // GET /services
     controller.getServices = function (req, res) {
-
         new app.models.services(req.dbConn)
-            .selectAll()
+            .getAll()
             .then(result => res.status(200).json(result))
             .catch(err => res.status(500).json({ error: err }));
     };
 
     //----------------------------------------------------------------------------------
-    // GET /services_search
-    controller.getSearchServices = function (req, res) {
-
-        new app.models.services(req.dbConn).selectSearch(`%${req.params.name}%`)
+    // GET:id /services
+    controller.getService = function (req, res) {
+        new app.models.services(req.dbConn)
+            .getOne(req.params.id)
             .then(result => res.status(200).json(result))
             .catch(err => res.status(500).json({ error: err }))
     };
 
     //----------------------------------------------------------------------------------
+    // GET /services favorites
+    controller.getFavoritesServices = function (req, res) {
+        new app.models.services(req.dbConn)
+            .getFavorites()
+            .then(result => res.status(200).json(result))
+            .catch(err => res.status(500).json({ error: err }))
+    };
+
+    //----------------------------------------------------------------------------------
+    // GET /services search
+    controller.getSearchServices = function (req, res) {
+        new app.models.services(req.dbConn)
+            .getSearch(`%${req.params.name}%`)
+            .then(result => res.status(200).json(result))
+            .catch(err => res.status(500).json({ error: err }))
+    };
+
+    //----------------------------------------------------------------------------------
+    // GET /services type
+    controller.getTypeServices = function (req, res) {
+        new app.models.services(req.dbConn)
+            .getType(`%${req.params.type}%`)
+            .then(result => res.status(200).json(result))
+            .catch(err => res.status(500).json({ error: err }))
+    };
+
+
+    //----------------------------------------------------------------------------------
     // POST /services
     controller.postServices = function (req, res) {
-
         new app.models.services(req.dbConn, req.body)
             .insert()
             .then(() => res.status(201).json({ message: 'Dados armazenados com sucesso!' }))
@@ -32,28 +58,28 @@ module.exports = function (app) {
     };
 
     //----------------------------------------------------------------------------------
-    // GET:id /services
-    controller.getServices = function (req, res) {
-
-        new app.models.services(req.dbConn).selectOne(req.params.id)
-            .then(result => res.status(200).json(result))
-            .catch(err => res.status(500).json({ error: err }))
+    // PUT /services
+    controller.putServices = function (req, res) {
+        new app.models.services(req.dbConn, req.body)
+            .update(req.params.id)
+            .then(() => res.status(201).json({ message: 'Dados atualizados com sucesso!' }))
+            .catch(err => res.status(500).json({ error: String(err) }))
     };
 
     //----------------------------------------------------------------------------------
-    // PUT /services
-    controller.putServices = function (req, res) {
-
-        new app.models.services(req.dbConn, req.body).update(req.params.id)
-            .then(() => res.status(201).json({ message: 'Dados atualizados com sucesso!' }))
+    // PUT /services favorite
+    controller.patchServicesFavorite = function (req, res) {
+        new app.models.services(req.dbConn, req.body)
+            .updateFavorite(req.params.id)
+            .then(() => res.status(201).json({ message: 'Dado de favorito atualizados com sucesso!' }))
             .catch(err => res.status(500).json({ error: String(err) }))
     };
 
     //----------------------------------------------------------------------------------
     // DELETE /services
     controller.deleteServices = function (req, res) {
-
-        new app.models.services(req.dbConn).delete(req.params.id)
+        new app.models.services(req.dbConn)
+            .delete(req.params.id)
             .then(result => res.status(200).json(result))
             .catch(err => res.status(404).json({ error: err }))
     };
