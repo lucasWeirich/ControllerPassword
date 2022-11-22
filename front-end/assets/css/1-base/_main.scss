@@ -43,6 +43,15 @@ body {
    & * {
       color: #fff;
    }
+
+  &::-webkit-scrollbar {
+      width: 5px;
+      background-color: $ColorThree;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+      background-color: $ColorOne;
+  }
 }
 
 p {

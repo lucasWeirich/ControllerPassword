@@ -87,3 +87,84 @@ table {
         }
     }
 }
+
+/* 
+  ================================
+  RESPONSIVE
+  ================================
+*/
+
+// DESKTOP - 1200px 
+@include main.breakpoint(smashDesktop) {
+    table {
+        &.--main {
+            & thead {
+                & tr {
+                    & th {
+                        padding: 5px 10px;
+
+                        &:first-child {
+                            width: 40px;
+                        }
+                    }
+                }
+            }
+
+            & tbody {
+                & tr {
+                    & td {
+                        padding: 5px 10px;
+
+                        &:first-child {
+                            width: 40px;
+
+                            background: url('../img/favorite.svg') no-repeat center left 10px;
+                            background-size: 20px;
+                            cursor: pointer;
+
+                            &.--favorited {
+                                background: url('../img/favorited.svg') no-repeat center left 10px;
+                                background-size: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// TABLET BIG - 900px*
+@include main.breakpoint(smashTabletBig) {
+    table {
+        width: 100%;
+        min-width: 820px;
+
+        &.--main {
+            & thead {
+                & tr {
+                    & th {
+                        font-size: reset.toRem(13);
+                    }
+                }
+            }
+
+            & tbody {
+                & tr {
+                    & td {
+                        font-size: reset.toRem(12);
+
+                        &.--copy {
+                            position: relative;
+                            padding-right: 25px;
+
+                            &::after {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

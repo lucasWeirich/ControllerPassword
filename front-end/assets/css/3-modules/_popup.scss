@@ -26,7 +26,7 @@
     }
 
     & .__content {
-        width: 80%;
+        width: 90%;
         max-width: 500px;
         background: main.$ColorZero;
         margin: auto;
@@ -92,6 +92,50 @@
             margin-bottom: 30px;
             transition: all 0.5s;
             letter-spacing: 1px
+        }
+    }
+}
+
+/* 
+  ================================
+  RESPONSIVE
+  ================================
+*/
+
+/* TABLET - 600px*/
+@include main.breakpoint(smashTablet) {
+    .__popup {
+        & .__content {
+            & .__header {
+                & h2 {
+                    font-size: reset.toRem(15);
+                }
+            }
+
+            & .__display {
+                padding: 20px;
+
+                & form {
+                    flex-direction: column;
+
+                    & .inputs {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        // POPUP --CREATE 
+        //&.--create {}
+        // POPUP --EDIT 
+        //&.--edit {}
+
+        // POPUP --DELETE
+        &.--delete {
+            & p {
+                font-size: reset.toRem(12);
+                margin-bottom: 20px;
+            }
         }
     }
 }

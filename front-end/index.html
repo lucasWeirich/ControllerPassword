@@ -40,6 +40,9 @@
     <main>
         <div class="__page">
             <section class="__navigations">
+                <div class="openClose">
+                    <img src="assets/img/more.svg">
+                </div>
                 <div class="__item">
                     <details open>
                         <summary class="__title">Items</summary>
@@ -187,6 +190,7 @@
                         <input type="text" name="host" placeholder="Host...">
                     </div>
                     <div class="inputs">
+                        <label for="type">Type:</label>
                         <select name="type">
                             <option value="" selected disabled>Type...</option>
                             <option value="wp-admin">WP Admin</option>
@@ -202,7 +206,7 @@
                     </div>
 
                     <div class="__buttons">
-                        <div class="button --three"><a class="--closePopup">Cancelar</button></div>
+                        <div class="button --three"><a class="--closePopup">Cancelar</a></div>
                         <div class=" button --one"><input type="submit" value="Editar"></div>
                     </div>
                 </form>

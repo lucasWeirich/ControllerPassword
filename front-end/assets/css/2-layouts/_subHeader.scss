@@ -8,7 +8,11 @@
 */
 
 .subHeader {
+    background-color: main.$ColorMain;
     border-bottom: solid 1px main.$ColorSecond;
+    position: sticky;
+    top: 80px;
+    z-index: 9;
 
     & .container {
         height: 60px;
@@ -18,6 +22,59 @@
         & .__options {
             @include main.FlexCenCen;
             gap: 10px;
+        }
+    }
+}
+
+/* 
+  ================================
+  RESPONSIVE
+  ================================
+*/
+
+/* TABLET BIG - 900px*/
+@include main.breakpoint(smashTabletBig) {
+    .subHeader {
+        & .container {
+            & form {
+                width: 58%;
+                min-width: 200px;
+
+                & .inputs.--search {
+                    width: 100%;
+                }
+            }
+
+            & .__options {
+                & .button {
+                    & button {
+                        padding: 0 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* MOBILE - 400px*/
+@include main.breakpoint(smashMobile) {
+    .subHeader {
+        top: 0;
+
+        & .container {
+            height: 98px;
+            flex-direction: column;
+
+            & form {
+                width: 100%;
+                min-width: 100%;
+            }
+
+            & .__options {
+                width: 100%;
+                justify-content: end;
+                margin-bottom: 6px;
+            }
         }
     }
 }

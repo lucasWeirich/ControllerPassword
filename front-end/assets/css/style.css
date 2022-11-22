@@ -167,6 +167,13 @@ body {
 body * {
   color: #fff;
 }
+body::-webkit-scrollbar {
+  width: 5px;
+  background-color: #bfbfbf;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #0f0f0f;
+}
 
 p {
   font-family: "Poppins", sans-serif;
@@ -218,11 +225,62 @@ header .container h1 {
 
 /* 
   ================================
+  RESPONSIVE
+  ================================
+*/
+@media (max-width: 25rem) {
+  header {
+    position: initial;
+  }
+  header .container {
+    justify-content: center;
+  }
+  header .container h1 {
+    text-align: center;
+  }
+  header .container .button {
+    text-transform: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+  header .container .button button, header .container .button a, header .container .button input {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    font-size: 0;
+  }
+  header .container .button button::after, header .container .button a::after, header .container .button input::after {
+    content: "+";
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2489d8;
+    border: solid 1px #2489d8;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+/* 
+  ================================
   SUB HEADER
   ================================
 */
 .subHeader {
+  background-color: #2a2a28;
   border-bottom: solid 1px #1e1e1e;
+  position: sticky;
+  top: 80px;
+  z-index: 9;
 }
 .subHeader .container {
   height: 60px;
@@ -238,6 +296,43 @@ header .container h1 {
   gap: 10px;
 }
 
+/* 
+  ================================
+  RESPONSIVE
+  ================================
+*/
+/* TABLET BIG - 900px*/
+@media (max-width: 56.25rem) {
+  .subHeader .container form {
+    width: 58%;
+    min-width: 200px;
+  }
+  .subHeader .container form .inputs.--search {
+    width: 100%;
+  }
+  .subHeader .container .__options .button button {
+    padding: 0 15px;
+  }
+}
+/* MOBILE - 400px*/
+@media (max-width: 25rem) {
+  .subHeader {
+    top: 0;
+  }
+  .subHeader .container {
+    height: 98px;
+    flex-direction: column;
+  }
+  .subHeader .container form {
+    width: 100%;
+    min-width: 100%;
+  }
+  .subHeader .container .__options {
+    width: 100%;
+    justify-content: end;
+    margin-bottom: 6px;
+  }
+}
 /* 
   ================================
   HOME
@@ -265,6 +360,27 @@ header .container h1 {
   padding-left: 20px;
 }
 
+/* 
+  ================================
+  RESPONSIVE
+  ================================
+*/
+/* DESKTOP - 1200px*/
+@media (max-width: 75rem) {
+  .home main .__page .__content {
+    width: calc(100% - 180px);
+  }
+}
+/* LAPTOP - 1024px*/
+@media (max-width: 64rem) {
+  .home main .__page .__content {
+    width: calc(100% - 40px);
+    margin-left: 40px;
+  }
+  .home main .__page .__content .__table {
+    overflow: auto;
+  }
+}
 /* 
   ================================
   BUTTONS
@@ -333,6 +449,9 @@ header .container h1 {
   box-shadow: 0 0 10px #1e1e1e;
   z-index: 1;
 }
+.__navigations .openClose {
+  display: none;
+}
 .__navigations .__item {
   display: flex;
   flex-direction: column;
@@ -379,6 +498,72 @@ header .container h1 {
   display: initial;
 }
 
+/* 
+  ================================
+  RESPONSIVE
+  ================================
+*/
+@media (max-width: 75rem) {
+  .__navigations {
+    width: 180px;
+  }
+  .__navigations .__item {
+    padding: 10px 20px;
+  }
+  .__navigations .__item .__title {
+    font-size: 0.9375rem;
+  }
+  .__navigations .__item * {
+    font-size: 0.8125rem;
+  }
+  .__navigations .__item a {
+    margin-left: 10px;
+  }
+  .__navigations .__item details details {
+    margin-left: 10px;
+  }
+}
+/* LAPTOP - 1024px*/
+@media (max-width: 64rem) {
+  .__navigations {
+    width: 40px;
+    transition: all 0.5s;
+    position: absolute;
+    left: 0;
+  }
+  .__navigations .openClose {
+    content: url("../img/more.svg");
+    display: initial;
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    transition: all 0.5s;
+    cursor: pointer;
+  }
+  .__navigations.--active {
+    width: 180px;
+  }
+  .__navigations.--active .openClose {
+    rotate: 180deg;
+    transition: all 0.5s;
+  }
+  .__navigations.--active .__item {
+    opacity: 1;
+    visibility: visible;
+  }
+  .__navigations .__item {
+    transition: all 0.5s;
+    opacity: 0;
+    visibility: collapse;
+  }
+  .__navigations .__item .__title {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .__navigations .__item * {
+    font-size: 0.75rem;
+  }
+}
 /* 
   ================================
   TABLES
@@ -447,6 +632,51 @@ table.--main tbody tr td.--copy:hover::after {
   opacity: 1;
 }
 
+/* 
+  ================================
+  RESPONSIVE
+  ================================
+*/
+@media (max-width: 75rem) {
+  table.--main thead tr th {
+    padding: 5px 10px;
+  }
+  table.--main thead tr th:first-child {
+    width: 40px;
+  }
+  table.--main tbody tr td {
+    padding: 5px 10px;
+  }
+  table.--main tbody tr td:first-child {
+    width: 40px;
+    background: url("../img/favorite.svg") no-repeat center left 10px;
+    background-size: 20px;
+    cursor: pointer;
+  }
+  table.--main tbody tr td:first-child.--favorited {
+    background: url("../img/favorited.svg") no-repeat center left 10px;
+    background-size: 20px;
+  }
+}
+@media (max-width: 56.25rem) {
+  table {
+    width: 100%;
+    min-width: 820px;
+  }
+  table.--main thead tr th {
+    font-size: 0.8125rem;
+  }
+  table.--main tbody tr td {
+    font-size: 0.75rem;
+  }
+  table.--main tbody tr td.--copy {
+    position: relative;
+    padding-right: 25px;
+  }
+  table.--main tbody tr td.--copy::after {
+    opacity: 1;
+  }
+}
 /* 
   ================================
   FORM
@@ -531,7 +761,7 @@ form .inputs.--search input[type=submit]:hover {
   z-index: 99999;
 }
 .__popup .__content {
-  width: 80%;
+  width: 90%;
   max-width: 500px;
   background: #3a3a38;
   margin: auto;
@@ -579,6 +809,30 @@ form .inputs.--search input[type=submit]:hover {
   letter-spacing: 1px;
 }
 
+/* 
+  ================================
+  RESPONSIVE
+  ================================
+*/
+/* TABLET - 600px*/
+@media (max-width: 37.5rem) {
+  .__popup .__content .__header h2 {
+    font-size: 0.9375rem;
+  }
+  .__popup .__content .__display {
+    padding: 20px;
+  }
+  .__popup .__content .__display form {
+    flex-direction: column;
+  }
+  .__popup .__content .__display form .inputs {
+    width: 100%;
+  }
+  .__popup.--delete p {
+    font-size: 0.75rem;
+    margin-bottom: 20px;
+  }
+}
 /* 
   ================================
   ALERT

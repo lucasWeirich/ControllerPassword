@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------
 // Variables Globais API
-const _URL_BASE = 'http://localhost:2222/';
+const _URL_BASE = 'http://192.168.1.6:2222/';
 const _HEADERS = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -24,19 +24,28 @@ function copyPassword(e) {
 }
 
 // -----------------------------------------------------------------
-// Function copy password
+// Function alert messages
 function alertMessage(txt, status) {
     let msgAlert = document.getElementById('alertMessage');
 
     msgAlert.innerText = txt;
     msgAlert.classList.add(status);
     msgAlert.classList.add('--active');
-    
+
     setTimeout(() => {
         msgAlert.classList.remove(status);
         msgAlert.classList.remove('--active');
     }, 4000);
 }
+
+// -----------------------------------------------------------------
+// Function open and close navigation
+let openCloseNav = document.querySelector('.__navigations .openClose');
+
+openCloseNav.addEventListener("click", function () {
+    let navigation = document.querySelector('.__navigations');
+    navigation.classList.toggle('--active');
+})
 
 // -----------------------------------------------------------------
 // Function popup create
