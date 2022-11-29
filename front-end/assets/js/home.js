@@ -25,17 +25,6 @@ const _search = {
     data: document.querySelector('form#search [name="search"]'),
 }
 
-// -----------------------------------------------------------------
-// Function for to do all request for db.json
-async function allRequest(route, _method, body) {
-    const request = await fetch(`${_URL_BASE}${route}`, {
-        method: _method,
-        header: _HEADERS,
-        mode: 'cors',
-        body,
-    });
-    return await request.json();
-}
 
 // -----------------------------------------------------------------
 // Function create HTML of table body
@@ -104,6 +93,30 @@ function updateFavorite() {
 // -----------------------------------------------------------------
 
 // -----------------------------------------------------------------
+// Function for to do all request for db.json
+async function allRequest(route, _method, body) {
+    const request = await fetch(`${_URL_BASE}${route}`, {
+        method: _method,
+        headers: _HEADERS,
+        mode: 'cors',
+        body,
+    });
+    const response = await request.json();
+    if (!request.ok) {
+
+        if (request.status === 401) {
+            sessionStorage.removeItem('token');
+            window.location = 'login.html';
+        }
+
+        alertMessage(`${response.message}`, '--error');
+        return;
+    }
+    if (response.message) alertMessage(response.message, '--ok');
+    return response;
+}
+
+// -----------------------------------------------------------------
 // Function return object with data for request 
 function createObjectData(e) {
     let date = new Date();
@@ -143,7 +156,6 @@ _create.form.addEventListener('submit', async function (e) {
 
     if (validadeInputs(newService)) {
         const res = await allRequest('services', 'POST', JSON.stringify(newService));
-        alertMessage(res.message, '--ok');
     } else {
         alertMessage('Complete todos os campos!', '--info');
         return;
@@ -193,7 +205,6 @@ _edit.form.addEventListener('submit', async function (e) {
     if (validadeInputs(_edit)) {
         let serviceUpdate = JSON.stringify(createObjectData(_edit));
         const res = await allRequest(`services/${_edit.id.value}`, 'put', serviceUpdate);
-        alertMessage(res.message, '--ok');
     }
     updateAll();
 })

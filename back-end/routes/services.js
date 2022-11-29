@@ -1,6 +1,6 @@
 //--------------------------------------------------
 // Importação do arquivo auth.
-//const auth = require('../middleware/auth');
+const auth = require('../middleware/auth');
 
 module.exports = function (app) {
 
@@ -9,24 +9,26 @@ module.exports = function (app) {
     //--------------------------------------------------
     // Request /services
     app.route('/services')
-        //.all(auth)
+        .all(auth)
         .get(controller.getServices)
         .post(controller.postServices);
 
     //--------------------------------------------------
     // Request /services favorites
     app.route('/services_favorites')
+        .all(auth)
         .get(controller.getFavoritesServices);
 
     //--------------------------------------------------
     // Request /services favorites/:id
     app.route('/services_favorites/:id')
+        .all(auth)
         .put(controller.patchServicesFavorite);
 
     //--------------------------------------------------
     // Request /services/:id
     app.route('/services/:id')
-        //.all(auth)
+        .all(auth)
         .get(controller.getService)
         .put(controller.putServices)
         .delete(controller.deleteServices);
@@ -34,12 +36,12 @@ module.exports = function (app) {
     //--------------------------------------------------
     // Request /services
     app.route('/services_search/:name')
-        //.all(auth)
+        .all(auth)
         .get(controller.getSearchServices);
 
     //--------------------------------------------------
     // Request /services
     app.route('/services_type/:type')
-        //.all(auth)
+        .all(auth)
         .get(controller.getTypeServices);
 };
